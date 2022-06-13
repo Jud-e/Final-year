@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title%}Sign Up{% endblock %}
+{% block body%}
+    <div class="row">
+        <div class="col-lg-6 col-md-6" id="space1">
+            <img src="{{url_for('static', filename='signup.jpg')}}" class="img"alt="pics">
+        </div>
+                <div class="col-lg-6 col-md-6 col-sm-12" style="background-color:#F6F6F6;">
+                    <form action="{{url_for('insert')}} " method="POST">
+                        <h3 class="banner">Sign Up</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 form-group">
+                                <label>Email:</label>
+                                <input style="height:50px;font-size:14pt;" type="email" class="form-control" name="email" required="1">
+                            </div>
+                            <div class="col-lg-6 col-md-12 form-group">
+                                <label>Scopus ID:</label>
+                                <input style="height:50px;font-size:14pt;" type="text" class="form-control" name="scopus_id" required="1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-12 form-group">
+                                <label>Name:</label>
+                                <input style="height:50px;font-size:14pt;" type="text" class="stubborn form-control" name="name" required="1">
+                            </div>
+                            <div class="col-lg-6 col-md-12 form-group">
+                                <label> Date last promoted:</label>
+                                <input style="height:50px;font-size:14pt;" type="date" class="stubborn form-control" name="date" required="1">
+                            </div>
+                        </div>                           
+                            <div class="row">
+                                <div class="col-lg-6 col-md-12 form-group">
+                                    <label>Password:</label>
+                                    <input style="height:50px;font-size:14pt;" type="password" class="form-control" name="password_hash" required="1">
+                                </div>
+                                <div class="col-lg-6 col-md-12 form-group">
+                                    <label>Confirm password:</label>
+                                    <input style="height:50px;font-size:14pt;" type="password" class="form-control" name="password_hash2" required="1">
+                                </div>
+                            </div>
+                            <div class="end">
+                                <button id="submit" class="btn btn-primary" type="submit">Add Employee</button>
+                                <a href="{{url_for('login')}}">Already have an account? Login</a>
+                            </div>
+                            
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock%}
+

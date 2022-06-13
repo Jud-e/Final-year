@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+{% block title%}Admin page still under work...{% endblock %}
+
+{% block body%}
+        <!--========== HEADER ==========-->
+        <header class="header">
+            <div class="header__container">
+                <img src="assets/img/perfil.jpg" alt="" class="header__img">
+
+                <a href="#" class="header__logo">ManageOps</a>
+
+                <div class="header__search">
+                    <input type="search" placeholder="Search" class="header__input">
+                    <i class='bx bx-search header__icon'></i>
+                </div>
+
+                <div class="header__toggle">
+                    <i class='bx bx-menu' id="header-toggle"></i>
+                </div>
+            </div>
+        </header>
+
+        <!--========== NAV ==========-->
+        <div class="nav" id="navbar">
+            <nav class="nav__container">
+                <div>
+                    <a href="#" class="nav__link nav__logo">
+                        <i class='bx bxs-folder-plus nav__icon' ></i>
+                        <span class="nav__logo-name">ManageOps</span>
+                    </a>
+
+                    <div class="nav__list">
+                        <div class="nav__items">
+                            <h3 class="nav__subtitle">Profile</h3>
+
+                            <a href="#" class="nav__link active">
+                                <i class='bx bx-home nav__icon' ></i>
+                                <span class="nav__name">Home</span>
+                            </a>
+
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">
+                                    <i class='bx bx-user nav__icon' ></i>
+                                    <span class="nav__name">Profile</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+
+                                <div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="#" class="nav__dropdown-item">Passwords</a>
+                                        <a href="#" class="nav__dropdown-item">Mail</a>
+                                        <a href="#" class="nav__dropdown-item">Accounts</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a href="#" class="nav__link">
+                                <i class='bx bx-message-rounded nav__icon' ></i>
+                                <span class="nav__name">Messages</span>
+                            </a>
+                        </div>
+
+                        <div class="nav__items">
+                            <h3 class="nav__subtitle">Menu</h3>
+
+                            <div class="nav__dropdown">
+                                <a href="#" class="nav__link">
+                                    <i class='bx bx-bell nav__icon' ></i>
+                                    <span class="nav__name">Notifications</span>
+                                    <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>
+                                </a>
+
+                                <div class="nav__dropdown-collapse">
+                                    <div class="nav__dropdown-content">
+                                        <a href="#" class="nav__dropdown-item">Blocked</a>
+                                        <a href="#" class="nav__dropdown-item">Silenced</a>
+                                        <a href="#" class="nav__dropdown-item">Publish</a>
+                                        <a href="#" class="nav__dropdown-item">Program</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <a href="#" class="nav__link">
+                                <i class='bx bx-compass nav__icon' ></i>
+                                <span class="nav__name">Explore</span>
+                            </a>
+                            <a href="#" class="nav__link">
+                                <i class='bx bx-bookmark nav__icon' ></i>
+                                <span class="nav__name">Saved</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="{{url_for('logout')}}" class="nav__link nav__logout">
+                    <i class='bx bx-log-out nav__icon' ></i>
+                    <span class="nav__name">Log Out</span>
+                </a>
+            </nav>
+        </div>
+
+        <!--========== CONTENTS ==========-->
+        <main>
+            <section>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                                <h2>Display Employees </h2>
+
+                                <table class="table table-hover table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Scopus ID</th>
+                                    <th>Name</th>
+                                    <th>Score</th>
+                                    <th>Actions</th>
+                                </tr>
+                                {% for row in employees%}
+                                <tr>
+                                    <th>{{row.id}}</th>
+                                    <th>{{row.email}}</th>
+                                    <th>{{row.scopus_id}}</th>
+                                    <th>{{row.name}}</th>
+                                    <th>{{row.score}}</th>
+                                    <th>
+                                        <a href="/edit{{row.id}}" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.id}}">Edit</a>
+                                        <a href="/delete/{{row.id}}" class="btn btn-danger btn-xs" onclick="return confirm('Are you sure you want to delete')">Delete</a>
+                                    </th>
+                                </tr>
+                                <div id="modaledit{{row.id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Update Employee</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{url_for('edit')}}" method="POST">
+                                                    <div class="form-group">
+                                                        <label>Email:</label>
+                                                        <input type="email" class="form-control" name="email" required="1" value="{{row.email}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Username:</label>
+                                                        <input type="text" class="form-control" name="username" required="1" value="{{row.username}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <input type="hidden" class="form-control" name="id" required="1" value="{{row.id}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Name:</label>
+                                                        <input type="text" class="form-control" name="name" required="1" value="{{row.name}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Age:</label>
+                                                        <input type="number" class="form-control" name="age" required="1" value="{{row.age}}">
+                                                    </div>
+                                <!--                <div class="form-group">-->
+                                <!--                    <label>Date:</label>-->
+                                <!--                    <input type="date" class="form-control" name="date" required="1" value="{{row.date}}">-->
+                                <!--                </div>-->
+                                                    <div class="form-group">
+                                                        <label>Score:</label>
+                                                        <input type="number" class="form-control" name="score" required="1" value="{{row.score}}">
+                                                    </div>
+                                                    <button class="btn btn-primary" type="submit">Update Employee</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor%}
+                            </table>
+
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!--========== MAIN JS ==========-->
+        <script>
+            const showMenu = (headerToggle, navbarId) =>{
+            const toggleBtn = document.getElementById(headerToggle),
+            nav = document.getElementById(navbarId)
+
+            // Validate that variables exist
+            if(headerToggle && navbarId){
+                toggleBtn.addEventListener('click', ()=>{
+                    // We add the show-menu class to the div tag with the nav__menu class
+                    nav.classList.toggle('show-menu')
+                    // change icon
+                    toggleBtn.classList.toggle('bx-x')
+                })
+            }
+        }
+            showMenu('header-toggle','navbar')
+
+            /*==================== LINK ACTIVE ====================*/
+            const linkColor = document.querySelectorAll('.nav__link')
+
+            function colorLink(){
+                linkColor.forEach(l => l.classList.remove('active'))
+                this.classList.add('active')
+            }
+
+            linkColor.forEach(l => l.addEventListener('click', colorLink))
+        </script>
+{%endblock%}

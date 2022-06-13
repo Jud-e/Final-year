@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+     {% block title%}My Profile{%endblock%}
+{% block body%}
+    <div>
+        <!--========== CONTENTS ==========-->
+        <div class="general">
+            <div class="first">
+                <div class="nav" id="navbar">
+                    <nav class="nav__container">
+                        <div>
+                            <a href="#" class="nav__link nav__logo" style="text-decoration: none;">
+                                <i style="text-decoration: none;" class='bx bxs-folder-plus nav__icon' ></i>
+                                <span class="nav__logo-name">ManageOps</span>
+                            </a>
+        
+                            <div class="nav__list">
+                                <div class="nav__items">
+                                    <h3 class="nav__subtitle">Profile</h3>
+        
+                                    <a href="#" class="nav__link active" style="text-decoration: none;">
+                                        <i class='bx bx-home nav__icon' ></i>
+                                        <span class="nav__name">Home</span>
+                                    </a>
+                                    <a href="{{url_for('update')}}" class="nav__link" style="text-decoration: none;">
+                                        <i class='bx bx-refresh nav__icon' ></i>
+                                        <span class="nav__name">Update info</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <a href="{{url_for('logout')}}" class="nav__link nav__logout" style="text-decoration: none;">
+                            <i class='bx bx-log-out nav__icon' ></i>
+                            <span class="nav__name">Log Out</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+            <section class="mid">
+                <div class="general-row">
+                    <h4 class="title">ManageOps</h4>
+                    <div class="greeting">
+                        <h2>Good Morning {{ current_user.name}}</h2>
+                        <div class="calculate">
+                            <a href="{{url_for('calculate')}}">Calculate</a>
+                            </div>
+                    </div>
+                    
+                   <div class="top-row">
+                        <div class="left">
+                            <h4>Total score:</h4>
+                            <p>{{ current_user.score}}</p>
+                        </div>
+                        <div class="left">
+                            <h4>Date last promoted:</h4>
+                            <p>nil</p>
+                        </div>
+                        <div class="left">
+                            <h4>Number of publications:</h4>
+                            <p>nil</p>
+                        </div>
+                   </div>
+                </div>
+                <div class="cards">
+                    <div class="cardss">
+                        <table class="table table-hover table-dark">
+                            <tr>
+                                <th>Publication titles</th>
+                            </tr>
+                            {% for i in tables%}
+                                <tr>
+                                    <th>
+                                        {{i}}
+                                    </th>
+                                </tr>
+                            {% endfor %}
+                        </table>
+                        <p>I'll inster a small table here that'll have the title of publication and percentile and year</p>
+                        <p>if possible, ill add a chart comparing the number of journlas to conferences</p>
+                    </div>
+                </div>
+            </section>
+            <div class="last">
+                <p>heyyy</p>
+                <div class="details">
+                    <h5>{{ current_user.name}}</h5>
+                    <strong>Username: </strong>{{ current_user.scopus_id}}<br>
+                    <strong>User ID: </strong>{{ current_user.id}}<br>
+                    <strong>Email: </strong>{{ current_user.email}}<br>
+                    <strong>Score: </strong>{{ current_user.score}}<br>
+                </div>
+            </div>
+        </div>
+        </div>
+        <!--========== MAIN JS ==========-->
+        <script>
+            const showMenu = (headerToggle, navbarId) =>{
+    const toggleBtn = document.getElementById(headerToggle),
+    nav = document.getElementById(navbarId)
+
+    // Validate that variables exist
+    if(headerToggle && navbarId){
+        toggleBtn.addEventListener('click', ()=>{
+            // We add the show-menu class to the div tag with the nav__menu class
+            nav.classList.toggle('show-menu')
+            // change icon
+            toggleBtn.classList.toggle('bx-x')
+        })
+    }
+}
+showMenu('header-toggle','navbar')
+
+/*==================== LINK ACTIVE ====================*/
+const linkColor = document.querySelectorAll('.nav__link')
+
+function colorLink(){
+    linkColor.forEach(l => l.classList.remove('active'))
+    this.classList.add('active')
+}
+
+linkColor.forEach(l => l.addEventListener('click', colorLink))
+        </script>
+{%endblock%}

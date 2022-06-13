@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">-->
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/profile.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/signup.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %} </title>
+
+<style>
+    body{
+        margin: 0;
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+nav{
+    margin-bottom: 20px;
+}
+.navbar-nav{
+    /* padding: 10px; */
+    margin-bottom: 10px;
+    display: flex;
+}
+.navbar-expand-sm .navbar-nav .nav-link{
+    float: right;
+    /* text-align: right; */
+}
+.card-body strong{
+    line-height: 1.9;
+
+}
+.navbar{
+    width: 100%;
+    height: 50px;
+    background: #ffffff;
+    padding: 10px;
+    border-bottom: 1px solid black;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0px 1px 14px -4px black;
+}
+.coverImageHolder{
+    width: 100%;
+    padding: 6px;
+    height: 400px;
+    background: #e0e0e0;
+}
+.userOptionBar{
+    height: 48px;
+    background: white;
+    width: 100%;
+    padding: 10px;
+    border-top: 1px solid #c7c7c7;
+    border-bottom: 1px #dcdcdc solid;
+}
+.userImage{
+    height: 200px;
+    width: 200px;
+    background: white;
+    border-radius: 50%;
+    margin-top: -170px;
+    border: 2px #dcdcdc solid;
+}
+.spacer{
+    width: 100%;
+    height: 20px;
+}
+.card{
+    margin: 25px 0px;
+}
+</style>
+</head>
+<body>
+
+{% block body %} {% endblock %}
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-23581568-13');
+</script>
+</body>
+</html>
